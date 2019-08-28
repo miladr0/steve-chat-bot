@@ -1,7 +1,7 @@
 # Birthday chat bot
 
 
-Birthday chat bot RESTful APIs using Node.js, Express, redis, docker and MongoDB.
+Birthday chat bot using Node.js, Express, redis, docker and MongoDB.
 
 ![alt text](https://i.imgur.com/zm3v6Bh.png)
 ## Features
@@ -82,7 +82,7 @@ docker exec -it <replace_with_app_container_name> sh
 yarn bot 
 ```
 ## Setup webhook
-Request link below with url body parameter. for better document on how to setup webhook open up swagger generated document.
+Request link below with url body parameter. for better document on how to setup webhook open up [Swagger generated document](#Documents) .
  ```bash
 [POST] http://localhost:3000/v1/messages/set-web-hook
  ```
