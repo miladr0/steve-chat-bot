@@ -1,0 +1,6 @@
+version: "2"
+services:
+  steve-chat-bot:
+    command: yarn start
+    environment:
+      - NODE_ENV=production
