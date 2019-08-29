@@ -10,27 +10,27 @@ module.exports = {
         .min(1)
         .max(100),
       order: Joi.string().valid(['asc', 'desc']),
-      orderBy: Joi.string().valid(['id'])  
+      orderBy: Joi.string().valid(['id']),
     },
   },
 
   // POST /v1/messages/set-web-hook
   setWebHook: {
     body: {
-          url: Joi.string()
-            .trim()
-            .uri({ scheme: ['http', 'https'] })
+      url: Joi.string()
+        .trim()
+        .uri({ scheme: ['http', 'https'] }),
     },
   },
 
-    // GET /v1/messages/:messageId
-    getMessage: {
-      params: {
-        messageId: Joi.string()
-          .regex(/^[a-fA-F0-9]{24}$/)
-          .required(),
-      },
+  // GET /v1/messages/:messageId
+  getMessage: {
+    params: {
+      messageId: Joi.string()
+        .regex(/^[a-fA-F0-9]{24}$/)
+        .required(),
     },
+  },
 
   // DELETE /messages/:messageId
   deleteMessage: {

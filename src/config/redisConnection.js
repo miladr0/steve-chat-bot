@@ -2,7 +2,7 @@ const redisObject = require('redis');
 const bluebird = require('bluebird');
 const { REDIS } = require('./vars');
 
-let con, subConnection;
+let con; let subConnection;
 
 bluebird.promisifyAll(redisObject.RedisClient.prototype);
 bluebird.promisifyAll(redisObject.Multi.prototype);
@@ -20,26 +20,23 @@ const createConnection = () => {
   return redis;
 };
 
-const createSubConnection = module.exports.createConnection = function(){
+const createSubConnection = () => {
   const redis = redisObject.createClient(REDIS.PORT, REDIS.HOST);
-  if(process.env.REDIS_PASSWORD)
-      redis.auth(process.env.REDIS_PASSWORD);
-  redis.on("connect", () => {
-      //console.log('Redis Connected');
+  if (process.env.REDIS_PASSWORD) { redis.auth(process.env.REDIS_PASSWORD); }
+  redis.on('connect', () => {
+    // console.log('Redis Connected');
   });
-  redis.on("Error", (err) => {
-      console.log(err);
+  redis.on('Error', (err) => {
+    console.log(err);
   });
 
   // redis.setMaxListeners(0);
   return redis;
 };
 
-module.exports.getSubConnection = () =>{
-
-  if (!subConnection)
-  {
-      subConnection = createSubConnection();
+module.exports.getSubConnection = () => {
+  if (!subConnection) {
+    subConnection = createSubConnection();
   }
   return subConnection;
 };

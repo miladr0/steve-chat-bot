@@ -34,7 +34,7 @@ app.get('/fb', function(req, res, next) {
     res.sendFile(path.join(__dirname, '..', 'public', 'fb_login.html'));
 }); */
 app.get('/', (req, res, next) => {
-  res.json({status: 'Steve Chat Bot'});
+  res.json({ status: 'Steve Chat Bot' });
 });
 // Swagger definition
 const swaggerDefinition = {
@@ -75,7 +75,6 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 app.options('*', cors());
-
 
 
 // Serve swagger docs the way you like (Recommendation: swagger-tools)

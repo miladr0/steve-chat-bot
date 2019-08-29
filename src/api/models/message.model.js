@@ -1,4 +1,5 @@
-
+/* eslint no-param-reassign: 0 */
+/* eslint prefer-const: 0 */
 
 const mongoose = require('mongoose');
 const httpStatus = require('http-status');
@@ -31,7 +32,6 @@ const messageSchema = new mongoose.Schema({
     trim: true,
   },
 }, { timestamps: true });
-
 
 
 /**

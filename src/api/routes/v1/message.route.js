@@ -5,7 +5,7 @@ const {
   listMessages,
   getMessage,
   deleteMessage,
-  setWebHook
+  setWebHook,
 } = require('../../validations/message.validation');
 
 
@@ -88,11 +88,11 @@ router
    *            $ref: '#/definitions/Message'
    *
    */
-  .get(validate(listMessages), controller.list)
+  .get(validate(listMessages), controller.list);
 
-  router
+router
   .route('/set-web-hook')
-      /**
+/**
    * @swagger
    * /v1/messages/set-web-hook:
    *   post:
@@ -121,9 +121,9 @@ router
    */
   .post(validate(setWebHook), controller.setWebHookUrl);
 
-  router
+router
   .route('/:messageId')
-    /**
+/**
    * @swagger
    * /v1/messages/{messageId}:
    *   get:
@@ -152,7 +152,7 @@ router
    *
    */
   .get(validate(getMessage), controller.get)
-    /**
+/**
    * @swagger
    * /v1/messages/{messageId}:
    *   delete:

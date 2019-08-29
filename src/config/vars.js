@@ -22,5 +22,5 @@ module.exports = {
     HOST: process.env.REDIS_HOST,
     PORT: process.env.REDIS_PORT,
   },
-  webHookChannel: process.env.WEB_HOOK_CHANNEL
+  webHookChannel: process.env.WEB_HOOK_CHANNEL,
 };

@@ -36,7 +36,7 @@ Birthday chat bot using Node.js, Express, redis, docker and MongoDB.
 Clone the repo and make it yours:
 
 ```bash
-git clone git@gitlab.com:miladr0/steve-chat-bot.git
+git clone git@github.com:miladr0/steve-chat-bot.git
 cd steve-chat-bot
 
 ```
@@ -121,4 +121,4 @@ available at:
  ```bash
 [GET] http://localhost:3000/api-docs
  ```
- 
+![alt text](https://i.imgur.com/55hCyKE.png) 
