@@ -32,7 +32,7 @@ script: yarn validate
 before_install: yarn global add greenkeeper-lockfile@1
 before_script:
   - sleep 15
-  - mongo steve-chat-bot-test --eval 'db.createUser({user:"mongoadmin",pwd:"mongoadmin",roles:["readWrite"]});'
+  - mongo steve-chat-bot-test --eval 'db.createUser({user:"mongoadmin",pwd:"mongoadmin",roles:["userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase"]});'
   - greenkeeper-lockfile-update
   
 after_script: greenkeeper-lockfile-upload
