@@ -42,7 +42,8 @@ jspm_packages
 
 
 #Database docker volume
-mongodata 
+mongodata/*
+!mongodata/.gitkeep
 
 mongo_seed/backupdata
 
@@ -50,7 +51,8 @@ mongo_seed/backupdata
 mongobackup
 
 #redis directory
-redis_data
+redis_data/*
+!redis_data/.gitkeep
 
 
 src/public/api-docs
