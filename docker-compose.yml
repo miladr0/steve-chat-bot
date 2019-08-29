@@ -1,0 +1,48 @@
+version: "2"
+services:
+  steve-chat-bot:
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/steve-chat-bot
+      - MONGO_URI_TESTS=mongodb://mongodb:27017/steve-chat-bot-test
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - steve  
+
+
+  mongodb:
+    image: mongo
+    volumes:
+      - ./mongodata:/data/db
+      - ./mongobackup:/backup
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=mongoadmin
+    ports:
+      - "127.0.0.1:27017:27017"
+    networks:
+      - steve  
+
+
+  redis:
+    image: redis:5.0.5-alpine
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - ./redis_data:/data
+    networks:
+      - steve         
+
+
+
+networks:
+  steve:
+    driver: bridge
