@@ -1,5 +1,7 @@
 # Birthday chat bot
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/miladr0/steve-chat-bot.svg)](https://greenkeeper.io/)
+
 
 Birthday chat bot using Node.js, Express, redis, docker and MongoDB.
 
