@@ -9,6 +9,7 @@ Birthday chat bot using Node.js, Express, redis, docker and MongoDB.
  - [Docker](https://www.docker.com/) support
  - [Redis](https://redis.io/) using redis pub/sub for implement web hook
  - [Commander](https://github.com/tj/commander.js) command-line interfaces made easy
+ - Continuous integration support with [travisCI](https://travis-ci.org)
  - [Inquirer](https://github.com/SBoudrias/Inquirer.js) A collection of common interactive command line
  - CORS enabled
  - Uses [yarn](https://yarnpkg.com)
