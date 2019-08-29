@@ -1,0 +1,43 @@
+language: node_js
+node_js: '10'
+
+services:
+  - mongodb
+  - redis-server
+
+git:
+  depth: 3
+
+branches:
+  only:
+    - master
+    - /^greenkeeper/.*$/
+
+env:
+  global:
+    - NODE_ENV=test
+    - PORT=3000
+    - MONGO_USER=mongoadmin
+    - MONGO_PASS=mongoadmin
+    - MONGO_URI_TESTS=mongodb://localhost:27017/steve-chat-bot-test
+    - REDIS_HOST=localhost
+    - REDIS_PORT=6379
+    - WEB_HOOK_CHANNEL=WEB_HOOK_CHANNEL 
+     
+
+
+script: yarn validate
+
+before_install: yarn global add greenkeeper-lockfile@1
+before_script:
+  - sleep 15
+  - mongo steve-chat-bot-test --eval 'db.createUser({user:"mongoadmin",pwd:"mongoadmin",roles:["readWrite"]});'
+  - greenkeeper-lockfile-update
+  
+after_script: greenkeeper-lockfile-upload
+
+# deploy:
+# - provider: script
+#   script: yarn deploy
+
+after_success: yarn coverage
