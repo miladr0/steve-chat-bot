@@ -4,6 +4,25 @@
 Birthday chat bot using Node.js, Express, redis, docker and MongoDB.
 
 ![alt text](https://i.imgur.com/zm3v6Bh.png)
+
+## Goal
+
+The goal is to create a Messenger bot in Node.js. The app should:
+- Be able to set up a Messenger webhook
+- When a user starts a conversation, ask few questions:
+1. User's first name
+2. Birth date
+3. If the user wants to know how many days till his next birtday. This is a yes/no answer
+and the bot should accept both user text answer („yes", „yeah", „yup”, "no”, "nah", etc.)
+and quick reply buttons. To make it simpler, you can assume there's only one valid
+date format: YYYY-MM-DD
+- if user says yes to the last question, send him a message: ```There are <N> days left until your next birthday```
+- if user says no, just say: Goodbye
+- Within the same app, create a REST endpoint ```/messages``` that lists all messages received
+from users
+- Create a REST endpoint for viewing a single message by its ID and also for deleting a
+single message.
+
 ## Features
 
  - [Docker](https://www.docker.com/) support
