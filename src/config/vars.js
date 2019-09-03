@@ -1,5 +1,4 @@
 const path = require('path');
-
 // import .env variables
 require('dotenv-safe').load({
   path: path.join(__dirname, '../../.env'),
@@ -23,4 +22,6 @@ module.exports = {
     PORT: process.env.REDIS_PORT,
   },
   webHookChannel: process.env.WEB_HOOK_CHANNEL,
+  fbVerifyToken: process.env.FB_VERIFY_TOKEN,
+  fbAccessToken: process.env.FB_ACCESS_TOKEN,
 };

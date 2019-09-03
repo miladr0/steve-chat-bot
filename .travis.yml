@@ -23,8 +23,8 @@ env:
     - MONGO_URI_TESTS=mongodb://localhost:27017/steve-chat-bot-test
     - REDIS_HOST=localhost
     - REDIS_PORT=6379
-    - WEB_HOOK_CHANNEL=WEB_HOOK_CHANNEL
-     
+    - FB_VERIFY_TOKEN=steve-birthday-bot
+    - FB_ACCESS_TOKEN=youraccesstoken
 
 
 script: yarn validate

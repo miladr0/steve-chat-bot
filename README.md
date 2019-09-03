@@ -1,13 +1,13 @@
-# Birthday chat bot
+# Facebook Birthday chat bot
 
 
 Birthday chat bot using Node.js, Express, redis, docker and MongoDB.
 
-![alt text](https://i.imgur.com/zm3v6Bh.png)
+![alt text](demo.gif)
 
 ## Goal
 
-The goal is to create a Messenger bot in Node.js. The app should:
+The goal is to create a ```Facebook Messenger``` bot in Node.js. The app should:
 - Be able to set up a Messenger webhook
 - When a user starts a conversation, ask few questions:
 1. User's first name
@@ -26,10 +26,7 @@ single message.
 ## Features
 
  - [Docker](https://www.docker.com/) support
- - [Redis](https://redis.io/) using redis pub/sub for implement web hook
- - [Commander](https://github.com/tj/commander.js) command-line interfaces made easy
- - Continuous integration support with [travisCI](https://travis-ci.org)
- - [Inquirer](https://github.com/SBoudrias/Inquirer.js) A collection of common interactive command line
+ - [Redis](https://redis.io/) using redis for track flow of questions
  - CORS enabled
  - Uses [yarn](https://yarnpkg.com)
  - Express + MongoDB ([Mongoose](http://mongoosejs.com/))
@@ -74,37 +71,21 @@ cp .env.example .env
 ```
 
 ## Running Locally
-App consist of two parts (need two terminal for running), api part and cli bot part.
-- To start api part (expressJs) :
+- To start the server:
 ```bash
 yarn dev
 ```
 
-- To start bot part :<br>
-inside new terminal (don't close or stop api part) run below command
-```bash
-yarn bot
-```
 ## Running in Docker
 
-App consist of two parts (need two terminal for running), api part and cli bot part.
-- To start api part (expressJs) :
+- To start the server:
 ```bash
 yarn docker:dev
 ```
-
-- To start bot part :<br>
-inside new terminal (don't stop api part) run below commands:
-```bash
-docker exec -it <replace_with_app_container_name> sh  
-```
-```bash
-yarn bot 
-```
 ## Setup webhook
-Request link below with url body parameter. for better document on how to setup webhook open up [Swagger generated document](#Documents) .
+From facebook developer panel set blew url as Callback URL of webhook. more info about the documentation of urls and apis. [Swagger generated document](#Documents) .
  ```bash
-[POST] http://localhost:3000/v1/messages/set-web-hook
+[GET] http://localhost:3000/v1/bots/webhook
  ```
 ## Lint
 

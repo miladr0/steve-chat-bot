@@ -13,16 +13,6 @@ module.exports = {
       orderBy: Joi.string().valid(['id']),
     },
   },
-
-  // POST /v1/messages/set-web-hook
-  setWebHook: {
-    body: {
-      url: Joi.string()
-        .trim()
-        .uri({ scheme: ['http', 'https'] }),
-    },
-  },
-
   // GET /v1/messages/:messageId
   getMessage: {
     params: {

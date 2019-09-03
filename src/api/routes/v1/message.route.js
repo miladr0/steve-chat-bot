@@ -5,7 +5,6 @@ const {
   listMessages,
   getMessage,
   deleteMessage,
-  setWebHook,
 } = require('../../validations/message.validation');
 
 
@@ -15,6 +14,10 @@ const router = express.Router();
  * definitions:
  *   Message:
  *     properties:
+ *        senderPsid:
+ *          type: string
+ *          description: unique ID of chat page
+ *          required: true
  *        firstName:
  *          type: string
  *          description: name of user
@@ -89,37 +92,6 @@ router
    *
    */
   .get(validate(listMessages), controller.list);
-
-router
-  .route('/set-web-hook')
-/**
-   * @swagger
-   * /v1/messages/set-web-hook:
-   *   post:
-   *     tags:
-   *       - Messages
-   *     description: set a url for Messenger webhook
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *          - name: url
-   *            description: user url that server push lasted message to it.
-   *            in: body
-   *            required: true
-   *            schema:
-   *              type: string
-   *              format: url
-   *
-   *
-   *
-   *     responses:
-   *       400:
-   *        description: ValidationError  Some parameters may contain invalid values
-   *       200:
-   *         description: successfully removed a message
-   *
-   */
-  .post(validate(setWebHook), controller.setWebHookUrl);
 
 router
   .route('/:messageId')

@@ -1,7 +1,7 @@
 const express = require('express');
 
 const messageRoutes = require('./message.route');
-const hookCallbackRoutes = require('./hookCallBack.router');
+const fbBotRoutes = require('./fbBot.router');
 
 
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get('/status', (req, res) => res.send('OK'));
 
 
 router.use('/messages', messageRoutes);
-router.use('/hook-callbacks', hookCallbackRoutes);
+router.use('/bots', fbBotRoutes);
 
 
 module.exports = router;

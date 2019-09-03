@@ -1,7 +1,6 @@
 const httpStatus = require('http-status');
 const APIError = require('../utils/APIError');
 const Message = require('../models/message.model');
-const redisClient = require('../../config/redisConnection').getConnection(); // require & connect
 
 
 /**
@@ -45,21 +44,6 @@ exports.remove = async (req, res, next) => {
     res.status(httpStatus.NO_CONTENT).end();
   } catch (error) {
     next(error);
-  }
-};
-
-
-/**
- * set a url for web hook
- * @public
- */
-exports.setWebHookUrl = async (req, res, next) => {
-  try {
-    const { url } = req.body;
-    const savedResult = await redisClient.setAsync('webHookUrl', url);
-    res.json(savedResult);
-  } catch (err) {
-    next(err);
   }
 };
 

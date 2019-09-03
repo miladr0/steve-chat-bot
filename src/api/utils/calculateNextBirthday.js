@@ -1,5 +1,4 @@
 const moment = require('moment');
-const chalk = require('chalk');
 
 exports.calculateNextBirthday = (value) => {
   const birthday = moment(value).format('YYYY-MM-DD');
@@ -10,8 +9,7 @@ exports.calculateNextBirthday = (value) => {
   const daysUntilBirthday = nextBirthday.diff(today, 'days');
 
   if (daysUntilBirthday === 0) {
-    console.log(chalk.green('Happy birthday too you!'));
-  } else {
-    console.log(`There are ${chalk.red.bold(daysUntilBirthday)} days left until your next birthday`);
+    return 'Happy birthday too you!';
   }
+  return `There are ${daysUntilBirthday} days left until your next birthday`;
 };

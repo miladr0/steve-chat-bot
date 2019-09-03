@@ -13,6 +13,11 @@ const MessageAggregatePaginate = require('../utils/MessageModelAggregatePaginati
  */
 const messageSchema = new mongoose.Schema({
 
+  senderPsid: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   firstName: {
     type: String,
     required: true,

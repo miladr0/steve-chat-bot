@@ -16,12 +16,14 @@ describe('Chat bot API', () => {
 
   beforeEach(async () => {
     userMsg1 = {
+      senderPsid: '2271660896277735',
       firstName: 'milad',
       birthday: '1992-05-02',
       confirmation: 'yes',
     };
 
     userMsg2 = {
+      senderPsid: '2271660896277736',
       firstName: 'steve',
       birthday: '2000-11-25',
       confirmation: 'nope',
@@ -135,39 +137,6 @@ describe('Chat bot API', () => {
           .then((res) => {
             expect(res.body.code).to.be.equal(404);
             expect(res.body.message).to.be.equal('Message not found');
-          });
-      });
-    });
-
-    describe('POST /v1/messages/set-web-hook', () => {
-      it('should report error when the url provided is not valid', () => {
-        const data = {
-          url: 'this_is_not_a_url',
-        };
-        return request(app)
-          .post('/v1/messages/set-web-hook')
-          .send(data)
-          .expect(httpStatus.BAD_REQUEST)
-          .then((res) => {
-            const { field } = res.body.errors[0];
-            const { location } = res.body.errors[0];
-            const { messages } = res.body.errors[0];
-            expect(field[0]).to.be.equal('url');
-            expect(location).to.be.equal('body');
-            expect(messages[0]).to.include('must be a valid uri with a scheme matching the http|https pattern');
-          });
-      });
-
-      it('should save hook url and response with "OK"', () => {
-        const data = {
-          url: 'http://demo7404656.mockable.io/t',
-        };
-        return request(app)
-          .post('/v1/messages/set-web-hook')
-          .send(data)
-          .expect(httpStatus.OK)
-          .then((res) => {
-            expect(res.body).to.be.equal('OK');
           });
       });
     });
