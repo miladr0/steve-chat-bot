@@ -81,18 +81,29 @@ const messageHandler = async (senderPsid, receivedMessage) => {
    * Handle user messages when he is using buttons
    * @public
    */
-const handlePostBack = async (senderPsid, receivedPostBack) => {
+const handlePostBack = async (senderPsid) => {
   try {
-    // Get the payload for the postback
-    const { payload } = receivedPostBack;
+    resetQuestions(senderPsid);
+  } catch (error) {
+    throw error;
+  }
+};
 
-    // Set the response based on the postback payload
+/**
+   * Handle quick replay
+   * @public
+   */
+const handleQuickReply = async (senderPsid, receivedPostBack) => {
+  try {
+    // Get the payload for the quick_replay
+    const { payload } = receivedPostBack;
+    console.log(payload);
+
+    // Set the response based on the quick_replay payload
     if (payload === 'YES') {
       showDaysUntilBirthday(senderPsid);
     } else if (payload === 'NO') {
       sendGoodbyMessage(senderPsid);
-    } else if (payload === 'GET_STARTED') {
-      resetQuestions(senderPsid);
     }
   } catch (error) {
     throw error;
@@ -152,25 +163,18 @@ const askCalculateBirthday = (senderPsid) => {
       id: senderPsid,
     },
     message: {
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'button',
-          text: 'show next birth date? ["y","yes","ok","yeah" or "n", "no", "nah"...]',
-          buttons: [
-            {
-              type: 'postback',
-              title: 'Yes',
-              payload: 'YES',
-            },
-            {
-              type: 'postback',
-              title: 'No',
-              payload: 'NO',
-            },
-          ],
+      text: 'show next birth date? ["y","yes","ok","yeah" or "n", "no", "nah"...]',
+      quick_replies: [
+        {
+          content_type: 'text',
+          title: 'Yes',
+          payload: 'YES',
+        }, {
+          content_type: 'text',
+          title: 'No',
+          payload: 'NO',
         },
-      },
+      ],
     },
   };
 
@@ -185,7 +189,11 @@ const sendGoodbyMessage = async (senderPsid) => {
   const message = await redisClient.hgetallAsync(`chat_${senderPsid}`);
   message.senderPsid = senderPsid;
   const messageToSave = new Message(message);
-  await messageToSave.save();
+
+  await Promise.all([
+    messageToSave.save(),
+    redisClient.delAsync(`chat_${senderPsid}`),
+  ]);
 };
 
 const showDaysUntilBirthday = async (senderPsid) => {
@@ -195,7 +203,11 @@ const showDaysUntilBirthday = async (senderPsid) => {
   // save all user inputs as single message in db
   message.senderPsid = senderPsid;
   const messageToSave = new Message(message);
-  await messageToSave.save();
+
+  await Promise.all([
+    messageToSave.save(),
+    redisClient.delAsync(`chat_${senderPsid}`),
+  ]);
 };
 
 
@@ -223,4 +235,5 @@ module.exports = {
   messageHandler,
   handlePostBack,
   setWelcomeMessage,
+  handleQuickReply,
 };

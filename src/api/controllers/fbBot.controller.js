@@ -46,13 +46,14 @@ exports.receiveWebHookData = async (req, res, next) => {
 
         // Get the sender PSID
         const senderPsid = webhookEvent.sender.id;
-
         // Check if the event is a message or postback and
         // pass the event to the appropriate handler function
-        if (webhookEvent.message) {
+        if (webhookEvent.message && webhookEvent.message.quick_reply) {
+          FaceBookService.handleQuickReply(senderPsid, webhookEvent.message.quick_reply);
+        } else if (webhookEvent.message) {
           FaceBookService.messageHandler(senderPsid, webhookEvent.message);
         } else if (webhookEvent.postback) {
-          FaceBookService.handlePostBack(senderPsid, webhookEvent.postback);
+          FaceBookService.handlePostBack(senderPsid);
         }
       });
 

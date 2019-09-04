@@ -133,6 +133,6 @@ messageSchema.statics = {
 /**
  * @typedef Message
  */
-messageSchema.index({ name: 1 });
+messageSchema.index({ senderPsid: 1 });
 
 module.exports = mongoose.model('Message', messageSchema);
