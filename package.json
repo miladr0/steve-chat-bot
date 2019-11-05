@@ -51,7 +51,7 @@
     "method-override": "^3.0.0",
     "mime": "2.4.0",
     "moment": "^2.24.0",
-    "mongoose": "5.4.3",
+    "mongoose": "5.7.5",
     "mongoose-delete": "0.5.0",
     "morgan": "^1.8.1",
     "pm2": "^3.0.0",
