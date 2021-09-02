@@ -34,7 +34,7 @@
     "url": "git@gitlab.com:miladr0/steve-chat-bot.git"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "bcryptjs": "2.4.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.19.0",
